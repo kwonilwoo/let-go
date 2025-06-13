@@ -1,25 +1,25 @@
 import streamlit as st
 
 def main():
-    st.title("키 체크 및 조언")
+    st.title("에너지 변환 계산기")
+    st.write("질량, 속도, 높이를 입력하면 위치 에너지, 운동 에너지, 총 에너지를 계산해줍니다.")
 
-    height = st.number_input("키(cm)를 입력하세요", min_value=0)
+    mass = st.number_input("질량(kg)", min_value=0.0, step=0.1)
+    velocity = st.number_input("속도(m/s)", min_value=0.0, step=0.1)
+    height = st.number_input("높이(m)", min_value=0.0, step=0.1)
+    g = 9.81  # 중력 가속도 m/s^2
 
-    if height > 0:
-        if height <= 174:
-            st.write("키가 작다")
-            st.info("""
-            키 크는 방법:
-            - 충분한 수면을 취하세요 (7~9시간)
-            - 균형 잡힌 식사를 하세요 (단백질, 칼슘 등)
-            - 규칙적으로 스트레칭과 운동을 하세요
-            - 자세를 바르게 유지하세요
-            - 스트레스를 줄이세요
-            """)
+    if st.button("계산하기"):
+        if mass > 0:
+            potential_energy = mass * g * height  # 위치 에너지
+            kinetic_energy = 0.5 * mass * velocity ** 2  # 운동 에너지
+            total_energy = potential_energy + kinetic_energy  # 총 에너지
+
+            st.write(f"위치 에너지 (Potential Energy): {potential_energy:.2f} J")
+            st.write(f"운동 에너지 (Kinetic Energy): {kinetic_energy:.2f} J")
+            st.write(f"총 에너지 (Total Energy): {total_energy:.2f} J")
         else:
-            st.write("키가 크다")
-            st.success("멋지다! 자신감을 가지세요 😊")
+            st.error("질량은 0보다 커야 합니다.")
 
 if __name__ == "__main__":
     main()
-
