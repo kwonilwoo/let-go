@@ -24,20 +24,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-            fig, ax = plt.subplots()
-            ax.plot(labels, energies, marker='o', linestyle='-', color='blue')
-            ax.set_ylabel('에너지 (J)')
-            ax.set_title('에너지 변환 시각화')
-            ax.grid(True)
-
-            # 각 점 위에 값 표시
-            for i, energy in enumerate(energies):
-                ax.annotate(f'{energy:.2f}', (labels[i], energies[i]), textcoords="offset points", xytext=(0,10), ha='center')
-
-            st.pyplot(fig)
-
-        else:
-            st.error("질량은 0보다 커야 합니다.")
-
-if __name__ == "__main__":
-    main()
